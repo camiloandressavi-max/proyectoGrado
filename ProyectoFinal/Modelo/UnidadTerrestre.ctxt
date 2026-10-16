@@ -1,0 +1,11 @@
+#BlueJ class context
+#Thu Oct 15 21:02:02 COT 2026
+comment0.target=UnidadTerrestre
+comment0.text=\r\n Write a description of class UnidadTerrestre here.\r\n \r\n @author (your name) \r\n @version (a version number or a date)\r\n
+comment1.params=codigo
+comment1.target=UnidadTerrestre(java.lang.String)
+comment2.target=java.util.ArrayList getListaRescatistas()
+comment3.params=listaRescatistas
+comment3.target=void setListaRescatistas(java.util.ArrayList)
+comment4.target=java.lang.String toString()
+numComments=5

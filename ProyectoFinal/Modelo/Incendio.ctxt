@@ -1,0 +1,17 @@
+#BlueJ class context
+#Thu Oct 15 21:04:03 COT 2026
+comment0.target=Incendio
+comment0.text=\r\n Write a description of class Incendio here.\r\n \r\n @author (your name) \r\n @version (a version number or a date)\r\n
+comment1.params=municipio nivelAlerta cantidadIncendios
+comment1.target=Incendio(java.lang.String, java.lang.String, int)
+comment2.target=java.lang.String getMunicipio()
+comment3.params=municipio
+comment3.target=void setMunicipio(java.lang.String)
+comment4.target=java.lang.String getNivelAlerta()
+comment5.params=nivelAlerta
+comment5.target=void setNivelAlerta(java.lang.String)
+comment6.target=int getCantidadIncendios()
+comment7.params=cantidadIncendios
+comment7.target=void setCantidadIncendios(int)
+comment8.target=java.lang.String toString()
+numComments=9

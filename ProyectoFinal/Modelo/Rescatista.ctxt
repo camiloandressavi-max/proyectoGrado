@@ -1,0 +1,11 @@
+#BlueJ class context
+#Thu Oct 15 21:01:34 COT 2026
+comment0.target=Rescatista
+comment0.text=\r\n Write a description of class Rescatista here.\r\n \r\n @author (your name) \r\n @version (a version number or a date)\r\n
+comment1.params=nombre id certificado
+comment1.target=Rescatista(java.lang.String, java.lang.String, java.lang.String)
+comment2.target=java.lang.String getCertificado()
+comment3.params=certificado
+comment3.target=void setCertificado(java.lang.String)
+comment4.target=java.lang.String toString()
+numComments=5
