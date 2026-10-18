@@ -1,5 +1,5 @@
 package Vista;
-
+import Modelo.*;
 import javax.swing.*;
 import java.awt.*;
 /**
@@ -10,38 +10,33 @@ import java.awt.*;
  */
 public class JFTIncendio extends JFrame 
 {
-    
-    //primer panel
-    public JTextField txtMunicipioIncendio = new JTextField(10);
-    public JTextField txtNivelAlerta = new JTextField(10);
+    public JTextField txtNombreMunicipio = new JTextField(10);
+    public JTextField txtPoblacionMunicipio = new JTextField(10);
+    public JComboBox<NivelDeAlerta> cmbNivelAlerta = new JComboBox<>(NivelDeAlerta.values());
     public JTextField txtCantidadIncendios = new JTextField(10);
-    public JButton btnRegistrarIncendio = new JButton("Registrar");
-    public JButton btnListarIncendios = new JButton("Listar Incendios");
-    public JTextArea areaIncendios = new JTextArea(6, 25);
+    public JButton btnRegistrarMunicipio = new JButton("Registrar");
+    public JButton btnListarMunicipios = new JButton("Listar Municipios");
+    public JTextArea txtAreaIncendios = new JTextArea(6, 25);
     
-    //segundo panel
-    public JTextField txtNombreRescatista = new JTextField(10);
-    public JTextField txtCodigoRescatista = new JTextField(10);
-    public JTextField txtCertificadoRescatista = new JTextField(10);
-    public JButton btnRegistrarRescatistas = new JButton("Registrar Rescatistas");
-    public JButton btnListarRescatistas = new JButton("Listar rescatistas");
-    public JTextArea areaRescatistas = new JTextArea(6, 25);
+    public JTextField txtCodigoTerrestre = new JTextField(10);
+    public JTextField txtCantidadIntegrantesTerrestre = new JTextField(10);
+    public JCheckBox chkCertificadoTerrestre = new JCheckBox("Equipo Certificado");
+    public JButton btnRegistrarTerrestre = new JButton("Registrar Terrestre");
+    public JButton btnListarTerrestres = new JButton("Listar Terrestres");
+    public JTextArea txtAreaRescatistas = new JTextArea(6, 25);
 
-    
-    //tercer panel
     public JTextField txtCodigoHeli = new JTextField(10);
     public JTextField txtPilotoHeli = new JTextField(10);
-    public JCheckBox chkBambiBucket = new JCheckBox("Posee bambi Bucket");
     public JButton btnRegistrarHelicopteros = new JButton("Registrar Helicópteros");
-    public JButton btnListaHelicoptero = new JButton("Lista helicóptero");
-    public JTextArea areaHelicopteros = new JTextArea(6, 25);
+    public JButton btnListaHelicoptero = new JButton("Lista Helicóptero");
+    public JTextArea txtAreaHelicopteros = new JTextArea(6, 25);
     
-    //cuarto panel
-    public JTextField txtMunicipioOperacion = new JTextField(10);
-    public JComboBox<String> cmbUnidadTerrestre = new JComboBox<>(new String[]{"Item 1"});
-    public JComboBox<String> cmbHelicopteroOp = new JComboBox<>(new String[]{"Item 1"});
+    public JTextField txtFechaOperacion = new JTextField(10);
+    public JComboBox<String> cmbMunicipioOp = new JComboBox<>(new String[]{"Seleccionar..."});
+    public JComboBox<String> cmbUnidadTerrestreOp = new JComboBox<>(new String[]{"Seleccionar..."});
+    public JComboBox<String> cmbHelicopteroOp = new JComboBox<>(new String[]{"Seleccionar..."});
     public JButton btnIniciarOperacion = new JButton("Iniciar Operacion");
-    public JTextArea areaOperaciones = new JTextArea(6, 25);
+    public JTextArea txtAreaOperaciones = new JTextArea(6, 25);
 
     public JFTIncendio() {
         setTitle("Sistema de Gestión de Riesgo - UNGRD");
@@ -68,7 +63,6 @@ public class JFTIncendio extends JFrame
         JLabel lblImagen = new JLabel(iconoOriginal);
         lblImagen.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-        
         panelSuperior.add(lblTitulo);        
         panelSuperior.add(lblImagen);
 
@@ -77,67 +71,70 @@ public class JFTIncendio extends JFrame
         JPanel panelCentral = new JPanel(new GridLayout(2, 2, 10, 10));
 
         JPanel panelIncendios = new JPanel(new BorderLayout(5, 5));
-        panelIncendios.setBorder(BorderFactory.createTitledBorder("Registrar Incendios"));
-        JPanel incendios = new JPanel(new GridLayout(3, 3, 5, 5));
+        panelIncendios.setBorder(BorderFactory.createTitledBorder("Registrar Municipios Afectados"));
+        JPanel incendios = new JPanel(new GridLayout(4, 3, 5, 5));
         incendios.add(new JLabel("Municipio"));
-        incendios.add(txtMunicipioIncendio);
-        incendios.add(btnRegistrarIncendio);
+        incendios.add(txtNombreMunicipio);
+        incendios.add(btnRegistrarMunicipio);
+        incendios.add(new JLabel("Población"));
+        incendios.add(txtPoblacionMunicipio);
+        incendios.add(btnListarMunicipios);
         incendios.add(new JLabel("Nivel de Alerta"));
-        incendios.add(txtNivelAlerta);
-        incendios.add(btnListarIncendios);
-        incendios.add(new JLabel("Cantidad de incendios"));
+        incendios.add(cmbNivelAlerta);
+        incendios.add(new JLabel(""));
+        incendios.add(new JLabel("Cant. Incendios"));
         incendios.add(txtCantidadIncendios);
         incendios.add(new JLabel(""));
         panelIncendios.add(incendios, BorderLayout.NORTH);
-        panelIncendios.add(new JScrollPane(areaIncendios), BorderLayout.CENTER);
+        panelIncendios.add(new JScrollPane(txtAreaIncendios), BorderLayout.CENTER);
         panelCentral.add(panelIncendios);
 
         JPanel panelRescatistas = new JPanel(new BorderLayout(5, 5));
-        panelRescatistas.setBorder(BorderFactory.createTitledBorder("Registrar Rescatistas Terrestres"));
+        panelRescatistas.setBorder(BorderFactory.createTitledBorder("Registrar Unidades Terrestres"));
         JPanel rescatistas = new JPanel(new GridLayout(3, 3, 5, 5));
-        rescatistas.add(new JLabel("nombre"));
-        rescatistas.add(txtNombreRescatista);
-        rescatistas.add(btnRegistrarRescatistas);
-        rescatistas.add(new JLabel("codigo"));
-        rescatistas.add(txtCodigoRescatista);
-        rescatistas.add(btnListarRescatistas);
-        rescatistas.add(new JLabel("certificado"));
-        rescatistas.add(txtCertificadoRescatista);
+        rescatistas.add(new JLabel("Código Equipo"));
+        rescatistas.add(txtCodigoTerrestre);
+        rescatistas.add(btnRegistrarTerrestre);
+        rescatistas.add(new JLabel("Cant. Integrantes"));
+        rescatistas.add(txtCantidadIntegrantesTerrestre);
+        rescatistas.add(btnListarTerrestres);
+        rescatistas.add(chkCertificadoTerrestre);
+        rescatistas.add(new JLabel(""));
         rescatistas.add(new JLabel(""));
         panelRescatistas.add(rescatistas, BorderLayout.NORTH);
-        panelRescatistas.add(new JScrollPane(areaRescatistas), BorderLayout.CENTER);
+        panelRescatistas.add(new JScrollPane(txtAreaRescatistas), BorderLayout.CENTER);
         panelCentral.add(panelRescatistas);
 
         JPanel panelHelicopteros = new JPanel(new BorderLayout(5, 5));
-        panelHelicopteros.setBorder(BorderFactory.createTitledBorder("Helicopteros"));
-        JPanel helicopteros = new JPanel(new GridLayout(3, 3, 5, 5));
-        helicopteros.add(new JLabel("Codigo"));
+        panelHelicopteros.setBorder(BorderFactory.createTitledBorder("Helicópteros"));
+        JPanel helicopteros = new JPanel(new GridLayout(2, 3, 5, 5));
+        helicopteros.add(new JLabel("Código"));
         helicopteros.add(txtCodigoHeli);
         helicopteros.add(btnRegistrarHelicopteros);
         helicopteros.add(new JLabel("Piloto"));
         helicopteros.add(txtPilotoHeli);
         helicopteros.add(btnListaHelicoptero);
-        helicopteros.add(chkBambiBucket);
-        helicopteros.add(new JLabel(""));
-        helicopteros.add(new JLabel(""));
         panelHelicopteros.add(helicopteros, BorderLayout.NORTH);
-        panelHelicopteros.add(new JScrollPane(areaHelicopteros), BorderLayout.CENTER);
+        panelHelicopteros.add(new JScrollPane(txtAreaHelicopteros), BorderLayout.CENTER);
         panelCentral.add(panelHelicopteros);
 
         JPanel panelOperaciones = new JPanel(new BorderLayout(5, 5));
         panelOperaciones.setBorder(BorderFactory.createTitledBorder("Operaciones De Rescate"));
-        JPanel operaciones = new JPanel(new GridLayout(3, 3, 5, 5));
-        operaciones.add(new JLabel("Municipio"));
-        operaciones.add(txtMunicipioOperacion);
+        JPanel operaciones = new JPanel(new GridLayout(4, 3, 5, 5));
+        operaciones.add(new JLabel("Fecha (dd/mm/aaaa)"));
+        operaciones.add(txtFechaOperacion);
         operaciones.add(btnIniciarOperacion);
-        operaciones.add(new JLabel("Unidad Terrestre"));
-        operaciones.add(cmbUnidadTerrestre);
+        operaciones.add(new JLabel("Municipio"));
+        operaciones.add(cmbMunicipioOp);
         operaciones.add(new JLabel(""));
-        operaciones.add(new JLabel("Helicoptero"));
+        operaciones.add(new JLabel("Unidad Terrestre"));
+        operaciones.add(cmbUnidadTerrestreOp);
+        operaciones.add(new JLabel(""));
+        operaciones.add(new JLabel("Helicóptero"));
         operaciones.add(cmbHelicopteroOp);
         operaciones.add(new JLabel(""));
         panelOperaciones.add(operaciones, BorderLayout.NORTH);
-        panelOperaciones.add(new JScrollPane(areaOperaciones), BorderLayout.CENTER);
+        panelOperaciones.add(new JScrollPane(txtAreaOperaciones), BorderLayout.CENTER);
         panelCentral.add(panelOperaciones);
 
         add(panelCentral, BorderLayout.CENTER);

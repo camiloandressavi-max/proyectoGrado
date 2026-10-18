@@ -9,37 +9,57 @@ import java.util.ArrayList;
  */
 public class Operacion
 {
-    private ArrayList<Incendio> listaIncendios;
-    private ArrayList<UnidadTerrestre> listaUnidadesTerrestres;
-    private ArrayList<Helicoptero> listaHelicopteros;
+    private String fecha;
+    private ArrayList<MunicipiosAfectados> municipios;
+    private ArrayList<Helicoptero> helicopteros;
+    private ArrayList<UnidadTerrestre> unidadesTerrestres;
+    private ArrayList<Rescatados> afectados;
 
-    public Operacion(ArrayList<Incendio> listaIncendios, ArrayList<UnidadTerrestre> listaUnidadesTerrestres, ArrayList<Helicoptero> listaHelicopteros) {
-        this.listaIncendios = listaIncendios;
-        this.listaUnidadesTerrestres = listaUnidadesTerrestres;
-        this.listaHelicopteros = listaHelicopteros;
+    public Operacion(String fecha) {
+        this.fecha = fecha;
+        this.municipios = new ArrayList<>();
+        this.helicopteros = new ArrayList<>();
+        this.unidadesTerrestres = new ArrayList<>();
+        this.afectados = new ArrayList<>();
     }
 
-    public ArrayList<Incendio> getListaIncendios() {
-        return listaIncendios;
+    public String getFecha() {
+        return fecha;
     }
 
-    public void setListaIncendios(ArrayList<Incendio> listaIncendios) {
-        this.listaIncendios = listaIncendios;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
-    public ArrayList<UnidadTerrestre> getListaUnidadesTerrestres() {
-        return listaUnidadesTerrestres;
+    public ArrayList<MunicipiosAfectados> getMunicipios() {
+        return municipios;
     }
 
-    public void setListaUnidadesTerrestres(ArrayList<UnidadTerrestre> listaUnidadesTerrestres) {
-        this.listaUnidadesTerrestres = listaUnidadesTerrestres;
+    public void setMunicipios(ArrayList<MunicipiosAfectados> municipios) {
+        this.municipios = municipios;
     }
 
-    public ArrayList<Helicoptero> getListaHelicopteros() {
-        return listaHelicopteros;
+    public ArrayList<Helicoptero> getHelicopteros() {
+        return helicopteros;
     }
 
-    public void setListaHelicopteros(ArrayList<Helicoptero> listaHelicopteros) {
-        this.listaHelicopteros = listaHelicopteros;
+    public void setHelicopteros(ArrayList<Helicoptero> helicopteros) {
+        this.helicopteros = helicopteros;
+    }
+
+    public ArrayList<UnidadTerrestre> getUnidadesTerrestres() {
+        return unidadesTerrestres;
+    }
+
+    public void setUnidadesTerrestres(ArrayList<UnidadTerrestre> unidadesTerrestres) {
+        this.unidadesTerrestres = unidadesTerrestres;
+    }
+
+    public ArrayList<Rescatados> getAfectados() {
+        return afectados;
+    }
+
+    public void setAfectados(ArrayList<Rescatados> afectados) {
+        this.afectados = afectados;
     }
 }

@@ -8,23 +8,23 @@ package Modelo;
  * @version (a version number or a date)
  */
 public class Piloto extends Persona {
-    private String licenciaVuelo;
+   private String idLicenciaVuelo;
 
-    public Piloto(String nombre, String id, String licenciaVuelo) {
-        super(nombre, id); 
-        this.licenciaVuelo = licenciaVuelo;
+    public Piloto(String cedula, String nombre, int edad, String idLicenciaVuelo) {
+        super(cedula, nombre, edad);
+        this.idLicenciaVuelo = idLicenciaVuelo;
     }
 
-    public String getLicenciaVuelo() {
-        return licenciaVuelo;
+    public String getIdLicenciaVuelo() {
+        return idLicenciaVuelo;
     }
 
-    public void setLicenciaVuelo(String licenciaVuelo) {
-        this.licenciaVuelo = licenciaVuelo;
+    public void setidLicenciaVuelo(String idLicenciaVuelo) {
+        this.idLicenciaVuelo = idLicenciaVuelo;
     }
 
     @Override
     public String toString() {
-        return "Piloto ID: " + id + ", Nombre: " + nombre + ", Licencia: " + licenciaVuelo + "";
+        return "Piloto " + super.toString() + ", ID de Licencia de Vuelo: " + idLicenciaVuelo ;
     }
 }

@@ -1,6 +1,5 @@
 package Modelo;
 
-import java.util.ArrayList;
 
 /**
  * Write a description of class UnidadTerrestre here.
@@ -10,29 +9,43 @@ import java.util.ArrayList;
  */
 
 public class UnidadTerrestre extends UnidadOperativa {
-    private ArrayList<Rescatista> listaRescatistas; 
-
-    public UnidadTerrestre(String codigo) {
-        super(codigo); 
-        this.listaRescatistas = new ArrayList<>();
-    }
-        
-    public ArrayList<Rescatista> getListaRescatistas() {
-        return listaRescatistas;
+    private int equipoTotal;
+    private boolean equipoCertificado;
+    
+    public UnidadTerrestre(String codigo, int equipoTotal, boolean equipoCertificado) {
+        super(codigo);
+        this.equipoTotal = equipoTotal;
+        this.equipoCertificado = equipoCertificado;
     }
 
-    public void setListaRescatistas(ArrayList<Rescatista> listaRescatistas) {
-        this.listaRescatistas = listaRescatistas;
-    }     
-        
+    public int getEquipoTotal() {
+        return equipoTotal;
+    }
+
+    public void setEquipoTotal(int equipoTotal) {
+        this.equipoTotal = equipoTotal;
+    }
+
+    public boolean isEquipoCertificado() {
+        return equipoCertificado;
+    }
+
+    public void setEquipoCertificado(boolean equipoCertificado) {
+        this.equipoCertificado = equipoCertificado;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Unidad Terrestre [Código: ").append(codigo).append("] - Personal:\n");
-        for (Rescatista r : listaRescatistas) {
-            sb.append("   -> ").append(r.toString()).append("\n");
+        String estadoCertificado;
+        if (equipoCertificado) {
+            estadoCertificado = "Posee certificado, puede participar hasta en municipios de nivel de riesgo alto";
+        } else {
+            estadoCertificado = "Solo puede ingresar hasta rescates de nivel bajo";
         }
-        return sb.toString();
+        return "Unidad Terrestre de Código: " + codigo + ", Equipo Total: " + equipoTotal + " Certificado: " +  estadoCertificado;
+        
+            
+        
+        
     }
-
 }

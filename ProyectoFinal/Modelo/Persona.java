@@ -9,27 +9,42 @@ package Modelo;
  */
 public class Persona
 {
-    protected String nombre;
-    protected String id;
+    private String cedula;
+    private String nombre;
+    private int edad;
 
-    public Persona(String nombre, String id) {
+    public Persona(String cedula, String nombre, int edad) {
+        this.cedula = cedula;
         this.nombre = nombre;
-        this.id = id;
+        this.edad = edad;
     }
 
+    public String getCedula() {
+        return cedula;
+    }
+            
+    public void setCedula(String cedula){
+        this.cedula=cedula;
+    }
+    
     public String getNombre() {
         return nombre;
     }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    
+    public void setNombre(String nombre){
+        this.nombre=nombre;
+    }
+    
+    public int getEdad() { 
+        return edad;
+    }
+    
+    public void setEdad(int edad){
+        this.edad=edad;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    @Override
+    public String toString() {
+        return "Cédula: " + cedula + ", Nombre: " + nombre + ", Edad: " + edad;
     }
 }
