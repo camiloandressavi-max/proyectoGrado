@@ -1843,7 +1843,7 @@
 											"top": 745,
 											"width": 734.7509765625,
 											"height": 13,
-											"text": "+public void registrarMunicipios(String nombreMunicipio, int poblacion, NivelDeAlerta nivelAlerta, int cantidadIncendios)",
+											"text": "+public void registrarMunicipios(String nombreMunicipio, int poblacion, NivelDeAlerta nivelAlerta, String Codigo)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1909,6 +1909,7 @@
 											"model": {
 												"$ref": "AAAAAAGha/ICbgBM/Q4="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
 											"parentStyle": true,
 											"left": 133,
@@ -1943,7 +1944,7 @@
 									"left": 128,
 									"top": 605,
 									"width": 744.7509765625,
-									"height": 218
+									"height": 203
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -7149,8 +7150,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGhW1WJ3S2r6Hg="
 									},
-									"name": "String nombreMunicipio",
-									"type": ""
+									"name": "String nombreMunicipio"
 								},
 								{
 									"_type": "UMLParameter",
@@ -7158,8 +7158,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGhW1WJ3S2r6Hg="
 									},
-									"name": "int poblacion",
-									"type": ""
+									"name": "int poblacion"
 								},
 								{
 									"_type": "UMLParameter",
@@ -7167,8 +7166,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGhW1WJ3S2r6Hg="
 									},
-									"name": "NivelDeAlerta nivelAlerta",
-									"type": ""
+									"name": "NivelDeAlerta nivelAlerta"
 								},
 								{
 									"_type": "UMLParameter",
@@ -7176,8 +7174,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGhW1WJ3S2r6Hg="
 									},
-									"name": "int cantidadIncendios",
-									"type": ""
+									"name": "String Codigo"
 								}
 							]
 						},
@@ -8206,7 +8203,8 @@
 								"$ref": "AAAAAAGha9/rLvAVja0="
 							},
 							"name": "String codigo",
-							"visibility": "private"
+							"visibility": "private",
+							"type": ""
 						}
 					],
 					"operations": [
