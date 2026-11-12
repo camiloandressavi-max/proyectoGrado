@@ -1,11 +1,14 @@
 #BlueJ class context
-#Sat Oct 17 23:21:59 COT 2026
+#Sat Oct 24 23:33:43 COT 2026
 comment0.target=Helicoptero
 comment0.text=\r\n Write a description of class Helicoptero here.\r\n \r\n @author (your name) \r\n @version (a version number or a date)\r\n
-comment1.params=codigo piloto equipamientos
-comment1.target=Helicoptero(java.lang.String, Piloto, java.lang.String)
+comment1.params=codigo piloto poseeBambiBucket
+comment1.target=Helicoptero(java.lang.String, Piloto, boolean)
 comment2.target=Piloto getPiloto()
 comment3.params=piloto
 comment3.target=void setPiloto(Piloto)
-comment4.target=java.lang.String toString()
-numComments=5
+comment4.target=boolean getPoseeBambiBucket()
+comment5.params=poseeBambiBucket
+comment5.target=void setPoseeBambiBucket(boolean)
+comment6.target=java.lang.String toString()
+numComments=7

@@ -37,7 +37,7 @@ public class UnidadTerrestre extends UnidadOperativa {
     @Override
     public String toString() {
         String estadoCertificado;
-        if (equipoCertificado) {
+        if (equipoCertificado==true) {
             estadoCertificado = "Posee certificado, puede participar hasta en municipios de nivel de riesgo alto";
         } else {
             estadoCertificado = "Solo puede ingresar hasta rescates de nivel bajo";

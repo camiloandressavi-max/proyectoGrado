@@ -9,10 +9,12 @@ package Modelo;
  */
 public class Helicoptero extends UnidadOperativa {
     private Piloto piloto;
+    private boolean poseeBambiBucket;
 
-    public Helicoptero(String codigo, Piloto piloto, String equipamientos) {
+    public Helicoptero(String codigo, Piloto piloto, boolean poseeBambiBucket) {
         super(codigo); 
         this.piloto = piloto;
+        this.poseeBambiBucket=poseeBambiBucket;
     }
 
     public Piloto getPiloto() {
@@ -23,7 +25,12 @@ public class Helicoptero extends UnidadOperativa {
         this.piloto = piloto;
     }
 
-    
+    public boolean getPoseeBambiBucket(){
+        return poseeBambiBucket;
+    }
+    public void setPoseeBambiBucket(boolean poseeBambiBucket){
+        this.poseeBambiBucket=poseeBambiBucket;
+    }
 
     @Override
     public String toString() {
