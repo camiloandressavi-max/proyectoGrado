@@ -9,9 +9,11 @@ package Modelo;
  */
 
 public class UnidadTerrestre extends UnidadOperativa {
+    
     private int equipoTotal;
     private boolean equipoCertificado;
-    
+    public UnidadTerrestre() {
+}
     public UnidadTerrestre(String codigo, int equipoTotal, boolean equipoCertificado) {
         super(codigo);
         this.equipoTotal = equipoTotal;
@@ -37,7 +39,7 @@ public class UnidadTerrestre extends UnidadOperativa {
     @Override
     public String toString() {
         String estadoCertificado;
-        if (equipoCertificado) {
+        if (equipoCertificado==true) {
             estadoCertificado = "Posee certificado, puede participar hasta en municipios de nivel de riesgo alto";
         } else {
             estadoCertificado = "Solo puede ingresar hasta rescates de nivel bajo";

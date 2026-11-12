@@ -1,0 +1,23 @@
+#BlueJ class context
+#Wed Nov 11 21:28:43 COT 2026
+comment0.target=GestorIncendios
+comment0.text=\r\n Write a description of class ClaseGestora here.\r\n \r\n @author (your name) \r\n @version (a version number or a date)\r\n
+comment1.target=GestorIncendios()
+comment10.params=codigo equipoTotal equipoCertificado
+comment10.target=boolean registrarUnidadesTerrestres(java.lang.String, int, boolean)
+comment11.params=respuesta
+comment11.target=java.lang.String listarUnidadesTerrestres(java.lang.String)
+comment2.target=java.util.ArrayList getMunicipios()
+comment3.params=municipios
+comment3.target=void setMunicipios(java.util.ArrayList)
+comment4.target=java.util.ArrayList getUnidadesOperativas()
+comment5.params=unidadesOperativas
+comment5.target=void setUnidadesOperativas(java.util.ArrayList)
+comment6.target=java.util.ArrayList getOperaciones()
+comment7.params=operaciones
+comment7.target=void setOperaciones(java.util.ArrayList)
+comment8.params=m codigo
+comment8.target=boolean registrarMunicipios(MunicipiosAfectados, java.lang.String)
+comment9.params=respuesta
+comment9.target=java.lang.String listarMunicipios(java.lang.String)
+numComments=12

@@ -1,0 +1,16 @@
+#BlueJ class context
+#Wed Oct 28 20:45:50 COT 2026
+comment0.target=JFTIniciarOperacion
+comment0.text=\r\n Write a description of class JFTIniciarOperacion here.\r\n \r\n @author (your name) \r\n @version (a version number or a date)\r\n
+comment1.target=JFTIniciarOperacion()
+comment2.params=label
+comment2.target=void estilizarTitulo(javax.swing.JLabel)
+comment3.params=label
+comment3.target=void estilizarLabel(javax.swing.JLabel)
+comment4.params=field
+comment4.target=void estilizarTextField(javax.swing.JTextField)
+comment5.params=cmb
+comment5.target=void estilizarComboBox(javax.swing.JComboBox)
+comment6.params=boton
+comment6.target=void estilizarBoton(javax.swing.JButton)
+numComments=7

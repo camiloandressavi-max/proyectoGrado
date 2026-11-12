@@ -10,7 +10,10 @@ package Modelo;
 public abstract class UnidadOperativa
 {
     protected String codigo; 
-
+    
+    public UnidadOperativa(){
+        
+    }
     public UnidadOperativa(String codigo) {
         this.codigo = codigo;
     }

@@ -12,13 +12,11 @@ public class MunicipiosAfectados
     private String nombreMunicipio;
     private int poblacion;
     private NivelDeAlerta nivelAlerta; 
-    private ArrayList<Incendios> incendios; 
-
+    private ArrayList<Incendio> incendios= new ArrayList<>();
     public MunicipiosAfectados(String nombreMunicipio, int poblacion, NivelDeAlerta nivelAlerta) {
         this.nombreMunicipio = nombreMunicipio;
         this.poblacion = poblacion;
         this.nivelAlerta = nivelAlerta;
-        this.incendios = new ArrayList<>();
     }
 
         public String getNombreMunicipio() {
@@ -45,21 +43,19 @@ public class MunicipiosAfectados
         this.nivelAlerta = nivelAlerta;
     }
     
-    public ArrayList<Incendios> getIncendios() {
-        return incendios;
+        public ArrayList<Incendio> getIncendios() {
+    return incendios;
     }
 
-    public void setIncendios(ArrayList<Incendios> incendios) {
-        this.incendios = incendios;
-    }
-   
-    public void agregarIncendio(Incendios incendio) {
-        this.incendios.add(incendio);
-    }
+    public void setIncendios(ArrayList<Incendio> incendios) {
+    this.incendios = incendios;
+    }    
+    
+    
 
     @Override
     public String toString() {
-        return "Municipio: " + nombreMunicipio + ", Población: " + poblacion + ", Nivel de Alerta: " + nivelAlerta + ", Cantidad de Incendios: " + incendios.size();
+        return "Municipio: " + nombreMunicipio + ", Población: " + poblacion + incendios.toString()+ "Su Nivel de Alerta es:" +nivelAlerta ;
     }
 
     

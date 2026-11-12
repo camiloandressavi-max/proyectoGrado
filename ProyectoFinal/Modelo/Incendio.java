@@ -9,42 +9,28 @@ package Modelo;
  */
 public class Incendio
 {
-    private String municipio;
-    private String nivelAlerta;
-    private int cantidadIncendios;
-
-    public Incendio(String municipio, String nivelAlerta, int cantidadIncendios) {
-        this.municipio = municipio;
-        this.nivelAlerta = nivelAlerta;
-        this.cantidadIncendios = cantidadIncendios;
+    private String codigo;
+    
+    public Incendio(){
+        
     }
-
-    public String getMunicipio() {
-        return municipio;
+    
+    public Incendio (String codigo){
+        this.codigo= codigo;
     }
-
-    public void setMunicipio(String municipio) {
-        this.municipio = municipio;
+    
+    public String getCodigo(){
+        return codigo;
     }
-
-    public String getNivelAlerta() {
-        return nivelAlerta;
+    
+    public void getCodigo(String codigo){
+        this.codigo= codigo;
     }
-
-    public void setNivelAlerta(String nivelAlerta) {
-        this.nivelAlerta = nivelAlerta;
-    }
-
-    public int getCantidadIncendios() {
-        return cantidadIncendios;
-    }
-
-    public void setCantidadIncendios(int cantidadIncendios) {
-        this.cantidadIncendios = cantidadIncendios;
-    }
-
-    @Override
+    
+     @Override
     public String toString() {
-        return "Incendio Municipio: " + municipio + ", Nivel de Alerta: " + nivelAlerta + ", Cantidad: " + cantidadIncendios ;
+        return "Incendio de" + "codigo: " + codigo ;
     }
+   
+    
 }
