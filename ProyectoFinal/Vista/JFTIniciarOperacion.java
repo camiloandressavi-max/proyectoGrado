@@ -1,180 +1,176 @@
 package Vista;
-import javax.swing.*;
+
 import java.awt.*;
-import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicButtonUI;
 import Modelo.*;
-/**
- * Write a description of class JFTIniciarOperacion here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class JFTIniciarOperacion extends JPanel
-{
-    private JLabel lblTitulo = new JLabel("Iniciar Operaciones");
-    private JLabel lblIncendio = new JLabel ("Incendio: ");
-    private JLabel lblFecha = new JLabel ("Fecha De La Operacion: ");
-    private JLabel lblMunicipio= new JLabel ("Municipio Afectado: ");
-    private JLabel lblUnidad= new JLabel ("Unidad Terrestre A Desplegar: ");
-    private JLabel lblHelicoptero= new JLabel ("Helicoptero A Desplegar: ");
-    private JTextField txtFecha= new JTextField();
-    private JComboBox<Object> cmbIncendio = new JComboBox<>();
-    private JComboBox<MunicipiosAfectados> cmbMunicipio = new JComboBox<MunicipiosAfectados>();
-    private JComboBox<UnidadTerrestre> cmbUnidad= new JComboBox<UnidadTerrestre>();
-    private JComboBox<Helicoptero> cmbHelicoptero= new JComboBox<Helicoptero>();
-    private JButton btnOperacion= new JButton("Iniciar Operacion");
-   
-    private JTextArea txtRespuestasOperacion= new JTextArea();
-    
-    private JScrollPane s= new JScrollPane(txtRespuestasOperacion);
-    
-    
-    public JFTIniciarOperacion(){
-        setBackground(new Color(15, 23, 42));
-        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        
-        estilizarTitulo(lblTitulo);
-        
-        txtRespuestasOperacion.setEditable(false);
-        txtRespuestasOperacion.setBackground(new Color(30, 41, 59));
-        txtRespuestasOperacion.setForeground(new Color(226, 232, 240));
-        txtRespuestasOperacion.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        
-        s.getViewport().setBackground(new Color(30, 41, 59));
-        
-        JPanel panelTitulo = new JPanel();
-        panelTitulo.setLayout(new BorderLayout());
-        panelTitulo.setBackground(new Color(15, 23, 42));
-        panelTitulo.add(lblTitulo, BorderLayout.WEST);
-        
-        JPanel principal= new JPanel ();
-        principal.setLayout(new GridLayout(1,2, 15, 0));
-        principal.setBackground(new Color(15, 23, 42));
-        
-        JPanel operacion= new JPanel();
-        operacion.setLayout(new GridBagLayout());
-        operacion.setBackground(new Color(15, 23, 42));
-        
-        GridBagConstraints gbcLabel = new GridBagConstraints();
-        gbcLabel.insets = new Insets(8, 8, 8, 8);
-        gbcLabel.anchor = GridBagConstraints.WEST;
-        gbcLabel.fill = GridBagConstraints.NONE;
-        
-        GridBagConstraints gbcComponent = new GridBagConstraints();
-        gbcComponent.insets = new Insets(8, 8, 8, 8);
-        gbcComponent.anchor = GridBagConstraints.WEST;
-        gbcComponent.fill = GridBagConstraints.HORIZONTAL;
-        gbcComponent.weightx = 1.0;
-        
-        estilizarLabel(lblIncendio);
-        estilizarLabel(lblFecha);
-        estilizarLabel(lblMunicipio);
-        estilizarLabel(lblUnidad);
-        estilizarLabel(lblHelicoptero);
- 
-        estilizarTextField(txtFecha);
-        estilizarComboBox(cmbIncendio);
-        estilizarComboBox(cmbMunicipio);
-        estilizarComboBox(cmbUnidad);
-        estilizarComboBox(cmbHelicoptero);
-        
-        estilizarBoton(btnOperacion);
-        
-        gbcLabel.gridx = 0; gbcLabel.gridy = 0;
-        operacion.add(lblFecha, gbcLabel);
-        gbcComponent.gridx = 1; gbcComponent.gridy = 0;
-        operacion.add(txtFecha, gbcComponent);
- 
-        gbcLabel.gridx = 0; gbcLabel.gridy = 1;
-        operacion.add(lblMunicipio, gbcLabel);
-        gbcComponent.gridx = 1; gbcComponent.gridy = 1;
-        operacion.add(cmbMunicipio, gbcComponent);
- 
-        gbcLabel.gridx = 0; gbcLabel.gridy = 2;
-        operacion.add(lblIncendio, gbcLabel);
-        gbcComponent.gridx = 1; gbcComponent.gridy = 2;
-        operacion.add(cmbIncendio, gbcComponent);
- 
-        gbcLabel.gridx = 0; gbcLabel.gridy = 3;
-        operacion.add(lblUnidad, gbcLabel);
-        gbcComponent.gridx = 1; gbcComponent.gridy = 3;
-        operacion.add(cmbUnidad, gbcComponent);
- 
-        gbcLabel.gridx = 0; gbcLabel.gridy = 4;
-        operacion.add(lblHelicoptero, gbcLabel);
-        gbcComponent.gridx = 1; gbcComponent.gridy = 4;
-        operacion.add(cmbHelicoptero, gbcComponent);
- 
-        gbcLabel.gridx = 0; gbcLabel.gridy = 5;
-        gbcLabel.fill = GridBagConstraints.NONE;
-        operacion.add(btnOperacion, gbcLabel);
-        
-        principal.add(operacion);
-        principal.add(new JLabel(""));
-        
-        JPanel lista= new JPanel();
-        lista.setLayout(new BorderLayout());
-        lista.setBackground(new Color(15, 23, 42));
-        lista.add(s,BorderLayout.CENTER);
-        
-        principal.add(lista);
-        
-        setLayout(new BorderLayout(0, 15));
-        add(panelTitulo, BorderLayout.NORTH);
-        add(principal, BorderLayout.CENTER);
-        
-        setVisible(true);
+
+public class JFTIniciarOperacion extends JPanel {
+
+    private static final Color NARANJA = new Color(194, 65, 12);
+    private static final Color FONDO = new Color(241, 243, 246);
+    private static final Color BORDE = new Color(209, 213, 219);
+    private static final Color TEXTO = new Color(17, 24, 39);
+    private static final Color GRIS = new Color(107, 114, 128);
+    private static final Border CAMPO = BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(BORDE, 1, true),
+            BorderFactory.createEmptyBorder(6, 12, 6, 12));
+
+    private JTextField txtFecha;
+    private JComboBox<Departamento> cmbDepartamento;
+    private JComboBox<MunicipiosAfectados> cmbMunicipio;
+    private JComboBox<Incendio> cmbIncendio;
+    private JComboBox<UnidadTerrestre> cmbUnidad;
+    private JComboBox<Helicoptero> cmbHelicoptero;
+    private JButton btnIniciar;
+    private JTextArea txtRespuestas;
+
+    public JFTIniciarOperacion() {
+        UIManager.put("Label.foreground", TEXTO);
+        setLayout(new BorderLayout(0, 24));
+        setBackground(FONDO);
+        setBorder(BorderFactory.createEmptyBorder(36, 40, 36, 40));
+
+        JPanel encabezado = new JPanel(new GridLayout(2, 1, 0, 6));
+        encabezado.setOpaque(false);
+        JLabel titulo = new JLabel("Iniciar operación");
+        titulo.setFont(new Font("SansSerif", Font.BOLD, 26));
+        JLabel subtitulo = new JLabel("Asigna una unidad a un incendio y arranca la operación.");
+        subtitulo.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        subtitulo.setForeground(GRIS);
+        encabezado.add(titulo);
+        encabezado.add(subtitulo);
+        add(encabezado, BorderLayout.NORTH);
+
+        JPanel cuerpo = new JPanel(new GridLayout(1, 2, 24, 0));
+        cuerpo.setOpaque(false);
+        add(cuerpo, BorderLayout.CENTER);
+
+        JPanel izquierda = new JPanel(new BorderLayout());
+        izquierda.setOpaque(false);
+        Tarjeta datos = new Tarjeta(new BorderLayout(0, 18));
+        JLabel etiquetaDatos = new JLabel("DATOS DE LA OPERACIÓN");
+        etiquetaDatos.setFont(new Font("SansSerif", Font.BOLD, 12));
+        etiquetaDatos.setForeground(GRIS);
+        datos.add(etiquetaDatos, BorderLayout.NORTH);
+
+        txtFecha = new JTextField();
+        cmbDepartamento = new JComboBox<Departamento>();
+        cmbMunicipio = new JComboBox<MunicipiosAfectados>();
+        cmbIncendio = new JComboBox<Incendio>();
+        cmbUnidad = new JComboBox<UnidadTerrestre>();
+        cmbHelicoptero = new JComboBox<Helicoptero>();
+
+        JComponent[] campos = {txtFecha, cmbDepartamento, cmbMunicipio, cmbIncendio, cmbUnidad, cmbHelicoptero};
+        for (JComponent c : campos) {
+            c.setBorder(CAMPO);
+            c.setBackground(Color.WHITE);
+            c.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        }
+
+        JPanel form = new JPanel(new GridLayout(6, 2, 16, 14));
+        form.setOpaque(false);
+        form.add(new JLabel("Fecha"));
+        form.add(txtFecha);
+        form.add(new JLabel("Departamento"));
+        form.add(cmbDepartamento);
+        form.add(new JLabel("Municipio"));
+        form.add(cmbMunicipio);
+        form.add(new JLabel("Incendio"));
+        form.add(cmbIncendio);
+        form.add(new JLabel("Unidad terrestre"));
+        form.add(cmbUnidad);
+        form.add(new JLabel("Helicóptero"));
+        form.add(cmbHelicoptero);
+        datos.add(form, BorderLayout.CENTER);
+
+        btnIniciar = new JButton("Iniciar operación");
+        btnIniciar.setUI(new BasicButtonUI());
+        btnIniciar.setOpaque(true);
+        btnIniciar.setBorderPainted(false);
+        btnIniciar.setFocusPainted(false);
+        btnIniciar.setFont(new Font("SansSerif", Font.BOLD, 14));
+        btnIniciar.setBorder(BorderFactory.createEmptyBorder(12, 22, 12, 22));
+        btnIniciar.setBackground(NARANJA);
+        btnIniciar.setForeground(Color.WHITE);
+        btnIniciar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        JPanel filaBoton = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
+        filaBoton.setOpaque(false);
+        filaBoton.add(btnIniciar);
+        datos.add(filaBoton, BorderLayout.SOUTH);
+
+        izquierda.add(datos, BorderLayout.NORTH);
+        cuerpo.add(izquierda);
+
+        Tarjeta resultados = new Tarjeta(new BorderLayout(0, 16));
+        JLabel tituloResultados = new JLabel("RESULTADOS");
+        tituloResultados.setFont(new Font("SansSerif", Font.BOLD, 12));
+        tituloResultados.setForeground(GRIS);
+        resultados.add(tituloResultados, BorderLayout.NORTH);
+
+        txtRespuestas = new JTextArea();
+        txtRespuestas.setEditable(false);
+        txtRespuestas.setFont(new Font("Monospaced", Font.PLAIN, 13));
+        txtRespuestas.setForeground(new Color(75, 85, 99));
+        txtRespuestas.setBackground(new Color(249, 250, 251));
+        txtRespuestas.setBorder(BorderFactory.createEmptyBorder(14, 14, 14, 14));
+        JScrollPane scroll = new JScrollPane(txtRespuestas);
+        scroll.setBorder(BorderFactory.createLineBorder(new Color(229, 231, 235), 1, true));
+        scroll.getViewport().setBackground(new Color(249, 250, 251));
+        resultados.add(scroll, BorderLayout.CENTER);
+        cuerpo.add(resultados);
     }
-    
-    private void estilizarTitulo(JLabel label) {
-        label.setForeground(Color.WHITE);
-        label.setFont(new Font("Segoe UI", Font.BOLD, 18));
+
+    public String getTxtFecha() {
+        return txtFecha.getText();
     }
-    
-    private void estilizarLabel(JLabel label) {
-        label.setForeground(new Color(203, 213, 225));
-        label.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+
+    public JComboBox<Departamento> getCmbDepartamento() {
+        return cmbDepartamento;
     }
-    
-    private void estilizarTextField(JTextField field) {
-        field.setPreferredSize(new Dimension(200, 32));
-        field.setBackground(new Color(30, 41, 59));
-        field.setForeground(new Color(226, 232, 240));
-        field.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        field.setCaretColor(new Color(226, 232, 240));
-        field.setBorder(BorderFactory.createLineBorder(new Color(51, 65, 85), 1));
+
+    public JComboBox<MunicipiosAfectados> getCmbMunicipio() {
+        return cmbMunicipio;
     }
-    
-    private void estilizarComboBox(JComboBox<?> cmb) {
-        cmb.setPreferredSize(new Dimension(200, 32));
-        cmb.setBackground(new Color(30, 41, 59));
-        cmb.setForeground(new Color(226, 232, 240));
-        cmb.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+
+    public JComboBox<Incendio> getCmbIncendio() {
+        return cmbIncendio;
     }
-    
-    private void estilizarBoton(JButton boton) {
-        boton.setPreferredSize(new Dimension(160, 36));
-        
-        Color normal = new Color(30, 41, 59);
-        Color presionado = new Color(234, 88, 12);
-        Color conMouseEncima = new Color(51, 65, 85);
-        
-        boton.setBackground(normal);
-        boton.setForeground(new Color(226, 232, 240));
-        boton.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        boton.setFocusPainted(false);
-        boton.setBorderPainted(false);
-        boton.setOpaque(true);
-        boton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        
-        boton.getModel().addChangeListener(e -> {
-            if (boton.getModel().isPressed()) {
-                boton.setBackground(presionado);
-            } else if (boton.getModel().isRollover()) {
-                boton.setBackground(conMouseEncima);
-            } else {
-                boton.setBackground(normal);
-            }
-        });
+
+    public JComboBox<UnidadTerrestre> getCmbUnidad() {
+        return cmbUnidad;
+    }
+
+    public JComboBox<Helicoptero> getCmbHelicoptero() {
+        return cmbHelicoptero;
+    }
+
+    public JButton getBotonIniciar() {
+        return btnIniciar;
+    }
+
+    public void setTxtRespuestasOperacion(String texto) {
+        txtRespuestas.setText(texto);
+    }
+
+    private static class Tarjeta extends JPanel {
+        Tarjeta(LayoutManager diseno) {
+            super(diseno);
+            setOpaque(false);
+            setBorder(BorderFactory.createEmptyBorder(22, 22, 22, 22));
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setColor(Color.WHITE);
+            g2.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+            g2.setColor(BORDE);
+            g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+            g2.dispose();
+        }
     }
 }

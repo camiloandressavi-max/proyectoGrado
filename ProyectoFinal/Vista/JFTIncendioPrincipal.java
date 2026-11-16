@@ -1,136 +1,133 @@
 package Vista;
-import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
-/**
- * Write a description of class JFTIncendioPrincipal here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class JFTIncendioPrincipal extends JFrame implements ActionListener
-{
-    
-    private JLabel lblUNGRD= new JLabel("UNGRD");
-    private JLabel lblIncendios= new JLabel("Incendios Forestales");
-    private JButton btnMunicipios= new JButton("Municipios Afectados");
-    private JButton btnUnidadesTerrestres= new JButton ("Unidades Terrestres");
-    private JButton btnHelicopteros= new JButton ("Helicopteros");
-    private JButton btnOperacion = new JButton ("Iniciar Operaciones");
-    private JFTMunicipios municipios;
-    private JFTHelicoptero helicoptero;
-    private JFTUnidadTerrestre terrestre;
-    private JFTIniciarOperacion operacion;
-    private CardLayout card= new CardLayout();
-    private JPanel contenedor= new JPanel();
+import javax.swing.*;
+import javax.swing.plaf.basic.BasicButtonUI;
 
-    public JFTIncendioPrincipal(){
-        setTitle("Sistema De Accion Contra Incendios-UNGRD");
-        setSize(1400,800);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        crearInterfaz();
+public class JFTIncendioPrincipal extends JFrame implements ActionListener {
+
+    private static final Color NARANJA = new Color(194, 65, 12);
+    private static final Color SIDEBAR = new Color(31, 38, 51);
+    private static final Color FONDO = new Color(241, 243, 246);
+
+    public JFTMunicipios municipios;
+    public JFTUnidadTerrestre terrestre;
+    public JFTHelicoptero helicoptero;
+    public JFTIniciarOperacion operacion;
+
+    private CardLayout cartas;
+    private JPanel contenido;
+    private JButton btnMunicipios;
+    private JButton btnTerrestre;
+    private JButton btnHelicoptero;
+    private JButton btnOperacion;
+    private JButton[] botones;
+
+    public JFTIncendioPrincipal() {
+        setTitle("Sistema de Gestión de Emergencias · UNGRD");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1280, 800);
         setLocationRelativeTo(null);
+
+        JPanel raiz = new JPanel(new BorderLayout());
+        raiz.setBackground(FONDO);
+
+        JPanel menu = new JPanel();
+        menu.setBackground(SIDEBAR);
+        menu.setLayout(new BoxLayout(menu, BoxLayout.Y_AXIS));
+        menu.setBorder(BorderFactory.createEmptyBorder(28, 18, 28, 18));
+        menu.setPreferredSize(new Dimension(250, 800));
+
+        JLabel marca = new JLabel("UNGRD");
+        marca.setForeground(Color.WHITE);
+        marca.setFont(new Font("SansSerif", Font.BOLD, 16));
+        marca.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        JLabel subtitulo = new JLabel("Incendios forestales");
+        subtitulo.setForeground(new Color(156, 163, 175));
+        subtitulo.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        subtitulo.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        btnMunicipios = new JButton("Municipios afectados");
+        btnTerrestre = new JButton("Unidades terrestres");
+        btnHelicoptero = new JButton("Helicópteros");
+        btnOperacion = new JButton("Iniciar operación");
+        botones = new JButton[]{btnMunicipios, btnTerrestre, btnHelicoptero, btnOperacion};
+
+        for (JButton b : botones) {
+            b.setUI(new BasicButtonUI());
+            b.setOpaque(true);
+            b.setBorderPainted(false);
+            b.setFocusPainted(false);
+            b.setHorizontalAlignment(SwingConstants.LEFT);
+            b.setFont(new Font("SansSerif", Font.PLAIN, 14));
+            b.setBorder(BorderFactory.createEmptyBorder(13, 16, 13, 16));
+            b.setAlignmentX(Component.LEFT_ALIGNMENT);
+            b.setMaximumSize(new Dimension(Integer.MAX_VALUE, 46));
+            b.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            b.addActionListener(this);
+        }
+
+        JLabel version = new JLabel("Versión 1.0");
+        version.setForeground(new Color(107, 114, 128));
+        version.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        version.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        menu.add(marca);
+        menu.add(subtitulo);
+        menu.add(Box.createVerticalStrut(28));
+        for (JButton b : botones) {
+            menu.add(b);
+            menu.add(Box.createVerticalStrut(6));
+        }
+        menu.add(Box.createVerticalGlue());
+        menu.add(version);
+
+        municipios = new JFTMunicipios();
+        terrestre = new JFTUnidadTerrestre();
+        helicoptero = new JFTHelicoptero();
+        operacion = new JFTIniciarOperacion();
+
+        cartas = new CardLayout();
+        contenido = new JPanel(cartas);
+        contenido.setBackground(FONDO);
+        contenido.add(municipios, "municipios");
+        contenido.add(terrestre, "terrestre");
+        contenido.add(helicoptero, "helicoptero");
+        contenido.add(operacion, "operacion");
+
+        raiz.add(menu, BorderLayout.WEST);
+        raiz.add(contenido, BorderLayout.CENTER);
+        setContentPane(raiz);
+
+        btnMunicipios.doClick();
         setVisible(true);
     }
-    
-    private void estilizarBoton(JButton boton){
-    Color normal = new Color(30, 41, 59);
-    Color conMouseEncima = new Color(51, 65, 85);
-    Color presionado = new Color(249, 115, 22);
 
-    boton.setMaximumSize(new Dimension(Integer.MAX_VALUE, 44));
-    boton.setAlignmentX(Component.LEFT_ALIGNMENT);
-    boton.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-    boton.setForeground(new Color(226, 232, 240));
-    boton.setFocusPainted(false);
-    boton.setBorderPainted(false);
-    boton.setOpaque(true);
-    boton.setHorizontalAlignment(SwingConstants.LEFT);
-    boton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
-    boton.setBackground(normal);
-    boton.getModel().addChangeListener(e -> {
-        if (boton.getModel().isPressed()) {
-            boton.setBackground(presionado);
-        } else if (boton.getModel().isRollover()) {
-            boton.setBackground(conMouseEncima);
-        } else {
-            boton.setBackground(normal);
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btnMunicipios) {
+            cartas.show(contenido, "municipios");
         }
-    });
-    }  
-
-    public void crearInterfaz(){
-        municipios= new JFTMunicipios();
-        helicoptero= new JFTHelicoptero();
-        terrestre= new JFTUnidadTerrestre();
-        operacion= new JFTIniciarOperacion();
-        JPanel principal = new JPanel ();
-        principal.setLayout(new BorderLayout());
-        
-        JPanel lateral= new JPanel();
-        lateral.setLayout(new BoxLayout(lateral,BoxLayout.Y_AXIS));
-        
-        estilizarBoton(btnMunicipios);
-        estilizarBoton(btnUnidadesTerrestres);
-        estilizarBoton(btnHelicopteros);
-        estilizarBoton(btnOperacion);  
-        
-        lateral.add(lblUNGRD);
-        lateral.add(Box.createRigidArea(new Dimension(0,4)));
-        lateral.add(lblIncendios);
-        lateral.add(Box.createRigidArea(new Dimension(0,4)));
-        lateral.add(btnMunicipios);
-        lateral.add(Box.createRigidArea(new Dimension(0,4)));
-        lateral.add(btnUnidadesTerrestres);
-        lateral.add(Box.createRigidArea(new Dimension(0,4)));
-        lateral.add(btnHelicopteros);
-        lateral.add(Box.createRigidArea(new Dimension(0,4)));
-        lateral.add(btnOperacion);
-        lateral.setBackground(new Color(30, 41, 59));
-        lateral.setPreferredSize(new Dimension(220, 0));
-        lateral.setBorder(BorderFactory.createEmptyBorder(24, 16, 24, 16));
-        
-        lblUNGRD.setFont(new Font("Segoe UI", Font.BOLD, 20));
-        lblUNGRD.setForeground(Color.WHITE);
-        lblUNGRD.setAlignmentX(Component.LEFT_ALIGNMENT);
-
-        lblIncendios.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        lblIncendios.setForeground(new Color(203, 213, 225));
-        lblIncendios.setAlignmentX(Component.LEFT_ALIGNMENT); 
-     
-        
-        principal.add(lateral,BorderLayout.WEST);
-        
-        contenedor.setLayout(card);
-        
-        principal.add(contenedor,BorderLayout.CENTER);
-        
-        contenedor.add(municipios, "municipios");
-        contenedor.add(terrestre, "terrestre");
-        contenedor.add(helicoptero, "helicoptero");
-        contenedor.add(operacion, "operacion");
-        
-        btnMunicipios.addActionListener(this);
-        btnUnidadesTerrestres.addActionListener(this);
-        btnHelicopteros.addActionListener(this);
-        btnOperacion.addActionListener(this);
-        
-        add(principal);
-    } 
-    
-    public void actionPerformed(ActionEvent e){
-        String comando= e.getActionCommand();
-        if (comando.equals("Municipios Afectados")) {
-            card.show(contenedor, "municipios");
-        }else if (comando.equals ("Unidades Terrestres")){
-            card.show(contenedor, "terrestre");
-        }else if (comando.equals ("Helicopteros")){
-            card.show(contenedor, "helicoptero");
-        }else if (comando.equals ("Iniciar Operaciones")){
-            card.show(contenedor, "operacion");
-
-}
-}
-
+        if (e.getSource() == btnTerrestre) {
+            cartas.show(contenido, "terrestre");
+        }
+        if (e.getSource() == btnHelicoptero) {
+            cartas.show(contenido, "helicoptero");
+        }
+        if (e.getSource() == btnOperacion) {
+            cartas.show(contenido, "operacion");
+        }
+        for (JButton b : botones) {
+            if (b == e.getSource()) {
+                b.setBackground(NARANJA);
+                b.setForeground(Color.WHITE);
+            }
+            if (b != e.getSource()) {
+                b.setBackground(SIDEBAR);
+                b.setForeground(new Color(209, 213, 219));
+            }
+        }
+    }
 }

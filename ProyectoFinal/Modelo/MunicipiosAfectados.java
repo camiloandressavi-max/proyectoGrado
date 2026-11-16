@@ -54,9 +54,8 @@ public class MunicipiosAfectados
     
 
     @Override
-    public String toString() {
-        return "Municipio: " + nombreMunicipio + ", Población: " + poblacion + incendios.toString()+ "Su Nivel de Alerta es:" +nivelAlerta ;
-    }
-
+public String toString() {
+    return nombreMunicipio;
+}
     
 }

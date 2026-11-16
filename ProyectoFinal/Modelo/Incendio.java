@@ -28,9 +28,9 @@ public class Incendio
     }
     
      @Override
-    public String toString() {
-        return "Incendio de" + "codigo: " + codigo ;
-    }
+public String toString() {
+    return codigo;
+}
    
     
 }

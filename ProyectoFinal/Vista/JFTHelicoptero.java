@@ -1,156 +1,165 @@
 package Vista;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 
-/**
- * Write a description of class JFTHelicoptero here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class JFTHelicoptero extends JPanel
-{
-    private JLabel lblTitulo = new JLabel("Helicopteros");
-    private JLabel lblNombre = new JLabel ("Nombre Del Piloto: ");
-    private JLabel lblCodigo= new JLabel ("Codigo Del Helicoptero: ");
-    private JTextField txtNombre= new JTextField();
-    private JTextField txtCodigo= new JTextField();
-    private JCheckBox chkBambiBucket= new JCheckBox ("Posee Bambi Bucket");
-    private JLabel lblRelleno= new JLabel("");
-    private JButton btnRegistrarHelicopteros= new JButton("Registrar Helicopteros");
-    private JButton btnListarHelicopteros = new JButton("Listar Helicopteros");
-    private JTextArea txtRespuestasHelicoptero= new JTextArea();
-    
-    private JScrollPane s= new JScrollPane(txtRespuestasHelicoptero);
-    
-    
-    public JFTHelicoptero(){
-        setBackground(new Color(15, 23, 42));
-        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        
-        estilizarTitulo(lblTitulo);
-        
-        txtRespuestasHelicoptero.setEditable(false);
-        txtRespuestasHelicoptero.setBackground(new Color(30, 41, 59));
-        txtRespuestasHelicoptero.setForeground(new Color(226, 232, 240));
-        txtRespuestasHelicoptero.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        
-        s.getViewport().setBackground(new Color(30, 41, 59));
-        
-        JPanel panelTitulo = new JPanel();
-        panelTitulo.setLayout(new BorderLayout());
-        panelTitulo.setBackground(new Color(15, 23, 42));
-        panelTitulo.add(lblTitulo, BorderLayout.WEST);
-        
-        JPanel principal= new JPanel ();
-        principal.setLayout(new GridLayout(1,2, 15, 0));
-        principal.setBackground(new Color(15, 23, 42));
-        
-        JPanel helicoptero= new JPanel();
-        helicoptero.setLayout(new GridBagLayout());
-        helicoptero.setBackground(new Color(15, 23, 42));
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(8, 8, 8, 8);
-        gbc.anchor = GridBagConstraints.WEST;
-        
-        estilizarLabel(lblNombre);
-        estilizarLabel(lblCodigo);
-        
-        estilizarTextField(txtNombre);
-        estilizarTextField(txtCodigo);
-        
-        estilizarCheckBox(chkBambiBucket);
-        estilizarLabel(lblRelleno);
-        
-        estilizarBoton(btnRegistrarHelicopteros);
-        estilizarBoton(btnListarHelicopteros);
-        
-        gbc.gridx = 0; gbc.gridy = 0;
-        helicoptero.add(lblNombre, gbc);
-        gbc.gridx = 1;
-        helicoptero.add(txtNombre, gbc);
-        
-        gbc.gridx = 0; gbc.gridy = 1;
-        helicoptero.add(lblCodigo, gbc);
-        gbc.gridx = 1;
-        helicoptero.add(txtCodigo, gbc);
-        
-        gbc.gridx = 0; gbc.gridy = 2;
-        helicoptero.add(chkBambiBucket, gbc);
-        gbc.gridx = 1;
-        helicoptero.add(lblRelleno, gbc);
-        
-        gbc.gridx = 0; gbc.gridy = 3;
-        helicoptero.add(btnRegistrarHelicopteros, gbc);
-        gbc.gridx = 1;
-        helicoptero.add(btnListarHelicopteros, gbc);
-        
-        principal.add(helicoptero);
-        
-        JPanel lista= new JPanel();
-        lista.setLayout(new BorderLayout());
-        lista.setBackground(new Color(15, 23, 42));
-        lista.add(s,BorderLayout.CENTER);
-        
-        principal.add(lista);
-        
-        setLayout(new BorderLayout(0, 15));
-        add(panelTitulo, BorderLayout.NORTH);
-        add(principal, BorderLayout.CENTER);
-        
-        setVisible(true);
+import java.awt.*;
+import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.plaf.basic.BasicButtonUI;
+
+public class JFTHelicoptero extends JPanel {
+
+    private static final Color NARANJA = new Color(194, 65, 12);
+    private static final Color FONDO = new Color(241, 243, 246);
+    private static final Color BORDE = new Color(209, 213, 219);
+    private static final Color TEXTO = new Color(17, 24, 39);
+    private static final Color GRIS = new Color(107, 114, 128);
+    private static final Border CAMPO = BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(BORDE, 1, true),
+            BorderFactory.createEmptyBorder(6, 12, 6, 12));
+
+    private JTextField txtNombre;
+    private JTextField txtCodigo;
+    private JCheckBox chkBambiBucket;
+    private JButton btnRegistrar;
+    private JButton btnListar;
+    private JTextArea txtRespuestas;
+
+    public JFTHelicoptero() {
+        UIManager.put("Label.foreground", TEXTO);
+        setLayout(new BorderLayout(0, 24));
+        setBackground(FONDO);
+        setBorder(BorderFactory.createEmptyBorder(36, 40, 36, 40));
+
+        JPanel encabezado = new JPanel(new GridLayout(2, 1, 0, 6));
+        encabezado.setOpaque(false);
+        JLabel titulo = new JLabel("Helicópteros");
+        titulo.setFont(new Font("SansSerif", Font.BOLD, 26));
+        JLabel subtitulo = new JLabel("Registra los helicópteros disponibles para la operación.");
+        subtitulo.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        subtitulo.setForeground(GRIS);
+        encabezado.add(titulo);
+        encabezado.add(subtitulo);
+        add(encabezado, BorderLayout.NORTH);
+
+        JPanel cuerpo = new JPanel(new GridLayout(1, 2, 24, 0));
+        cuerpo.setOpaque(false);
+        add(cuerpo, BorderLayout.CENTER);
+
+        JPanel izquierda = new JPanel(new BorderLayout());
+        izquierda.setOpaque(false);
+        Tarjeta datos = new Tarjeta(new BorderLayout(0, 18));
+        JLabel etiquetaDatos = new JLabel("DATOS DEL HELICÓPTERO");
+        etiquetaDatos.setFont(new Font("SansSerif", Font.BOLD, 12));
+        etiquetaDatos.setForeground(GRIS);
+        datos.add(etiquetaDatos, BorderLayout.NORTH);
+
+        txtNombre = new JTextField();
+        txtCodigo = new JTextField();
+        chkBambiBucket = new JCheckBox("Posee Bambi Bucket");
+        chkBambiBucket.setOpaque(false);
+        chkBambiBucket.setFont(new Font("SansSerif", Font.PLAIN, 14));
+
+        JComponent[] campos = {txtNombre, txtCodigo};
+        for (JComponent c : campos) {
+            c.setBorder(CAMPO);
+            c.setBackground(Color.WHITE);
+            c.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        }
+
+        JPanel form = new JPanel(new GridLayout(3, 2, 16, 14));
+        form.setOpaque(false);
+        form.add(new JLabel("Nombre"));
+        form.add(txtNombre);
+        form.add(new JLabel("Código"));
+        form.add(txtCodigo);
+        form.add(new JLabel(""));
+        form.add(chkBambiBucket);
+        datos.add(form, BorderLayout.CENTER);
+
+        btnRegistrar = new JButton("Registrar helicóptero");
+        btnListar = new JButton("Listar helicópteros");
+        JButton[] botones = {btnRegistrar, btnListar};
+        for (JButton b : botones) {
+            b.setUI(new BasicButtonUI());
+            b.setOpaque(true);
+            b.setBorderPainted(false);
+            b.setFocusPainted(false);
+            b.setFont(new Font("SansSerif", Font.BOLD, 14));
+            b.setBorder(BorderFactory.createEmptyBorder(12, 22, 12, 22));
+            b.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        }
+        btnRegistrar.setBackground(NARANJA);
+        btnRegistrar.setForeground(Color.WHITE);
+        btnListar.setBackground(new Color(243, 244, 246));
+        btnListar.setForeground(TEXTO);
+
+        JPanel filaBotones = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
+        filaBotones.setOpaque(false);
+        filaBotones.add(btnRegistrar);
+        filaBotones.add(btnListar);
+        datos.add(filaBotones, BorderLayout.SOUTH);
+
+        izquierda.add(datos, BorderLayout.NORTH);
+        cuerpo.add(izquierda);
+
+        Tarjeta resultados = new Tarjeta(new BorderLayout(0, 16));
+        JLabel tituloResultados = new JLabel("RESULTADOS");
+        tituloResultados.setFont(new Font("SansSerif", Font.BOLD, 12));
+        tituloResultados.setForeground(GRIS);
+        resultados.add(tituloResultados, BorderLayout.NORTH);
+
+        txtRespuestas = new JTextArea();
+        txtRespuestas.setEditable(false);
+        txtRespuestas.setFont(new Font("Monospaced", Font.PLAIN, 13));
+        txtRespuestas.setForeground(new Color(75, 85, 99));
+        txtRespuestas.setBackground(new Color(249, 250, 251));
+        txtRespuestas.setBorder(BorderFactory.createEmptyBorder(14, 14, 14, 14));
+        JScrollPane scroll = new JScrollPane(txtRespuestas);
+        scroll.setBorder(BorderFactory.createLineBorder(new Color(229, 231, 235), 1, true));
+        scroll.getViewport().setBackground(new Color(249, 250, 251));
+        resultados.add(scroll, BorderLayout.CENTER);
+        cuerpo.add(resultados);
     }
-    
-    private void estilizarTitulo(JLabel label) {
-        label.setForeground(Color.WHITE);
-        label.setFont(new Font("Segoe UI", Font.BOLD, 18));
+
+    public String getTxtNombre() {
+        return txtNombre.getText();
     }
-    
-    private void estilizarLabel(JLabel label) {
-        label.setForeground(new Color(203, 213, 225));
-        label.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+
+    public String getTxtCodigo() {
+        return txtCodigo.getText();
     }
-    
-    private void estilizarTextField(JTextField field) {
-        field.setPreferredSize(new Dimension(200, 32));
-        field.setBackground(new Color(30, 41, 59));
-        field.setForeground(new Color(226, 232, 240));
-        field.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        field.setCaretColor(new Color(226, 232, 240));
-        field.setBorder(BorderFactory.createLineBorder(new Color(51, 65, 85), 1));
+
+    public boolean getChkBambiBucket() {
+        return chkBambiBucket.isSelected();
     }
-    
-    private void estilizarCheckBox(JCheckBox chk) {
-        chk.setBackground(new Color(15, 23, 42));
-        chk.setForeground(new Color(203, 213, 225));
-        chk.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        chk.setOpaque(true);
+
+    public JButton getBotonRegistrar() {
+        return btnRegistrar;
     }
-    
-    private void estilizarBoton(JButton boton) {
-        boton.setPreferredSize(new Dimension(160, 36));
-        
-        Color normal = new Color(30, 41, 59);
-        Color presionado = new Color(234, 88, 12);
-        Color conMouseEncima = new Color(51, 65, 85);
-        
-        boton.setBackground(normal);
-        boton.setForeground(new Color(226, 232, 240));
-        boton.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        boton.setFocusPainted(false);
-        boton.setBorderPainted(false);
-        boton.setOpaque(true);
-        boton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        
-        boton.getModel().addChangeListener(e -> {
-            if (boton.getModel().isPressed()) {
-                boton.setBackground(presionado);
-            } else if (boton.getModel().isRollover()) {
-                boton.setBackground(conMouseEncima);
-            } else {
-                boton.setBackground(normal);
-            }
-        });
+
+    public JButton getBotonListar() {
+        return btnListar;
+    }
+
+    public void setTxtRespuestasHelicoptero(String texto) {
+        txtRespuestas.setText(texto);
+    }
+
+    private static class Tarjeta extends JPanel {
+        Tarjeta(LayoutManager diseno) {
+            super(diseno);
+            setOpaque(false);
+            setBorder(BorderFactory.createEmptyBorder(22, 22, 22, 22));
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setColor(Color.WHITE);
+            g2.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+            g2.setColor(BORDE);
+            g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20);
+            g2.dispose();
+        }
     }
 }

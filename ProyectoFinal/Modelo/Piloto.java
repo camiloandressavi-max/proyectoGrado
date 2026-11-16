@@ -9,11 +9,14 @@ package Modelo;
  */
 public class Piloto extends Persona {
    private String idLicenciaVuelo;
-
+   
+   
+   
     public Piloto(String cedula, String nombre, int edad, String idLicenciaVuelo) {
         super(cedula, nombre, edad);
         this.idLicenciaVuelo = idLicenciaVuelo;
     }
+    
 
     public String getIdLicenciaVuelo() {
         return idLicenciaVuelo;

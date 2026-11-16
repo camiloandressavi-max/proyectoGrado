@@ -19,6 +19,7 @@ public class Helicoptero extends UnidadOperativa {
         this.piloto = piloto;
         this.poseeBambiBucket=poseeBambiBucket;
     }
+    
 
     public Piloto getPiloto() {
         return piloto;
